@@ -1,0 +1,10 @@
+.success {
+    text-align: center;
+    border: 2px solid green;
+    width: 400px;
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 200px;
+}
+

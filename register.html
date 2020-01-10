@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Multistaff</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <center><img src="logo.jpeg" alt=""></center>
+            <center>PRESENTS</center>
+            <h3>MULTISTAFF MINISTRY CONFERNCE</h3>
+            <center ><img src="white.jpeg" alt="" class="white" style='width: 300px; height: 300px;'></center>
+            <div class="info">
+                <p></p>
+                <center>How to make payment</center>
+                <p>
+                    A REGISTRATION FEE OF <b>₦1000</b> IS TO PAID <br/>
+                    <b><i>Account no:</i> 0004940560 </b><br/>
+                    Account name: <b>Itesiwaju Baptist Association</b><br/>
+                    Bank: <b>Access bank.</b> 
+                    <p>PLEASE send confirmation of payment  to <br><span> <b>Samuel Olaranweju:</b></span> 07056475214</p> </p>
+                    <button><a href="index.html"> back to home</a></button>
+            </div>
+
+        </div>
+        <div class="col-md-6 login-form-2">
+            <h3>Registration Form</h3>
+            <form id="regForm">
+                
+                <label> FirstName </label> <br/>
+                <input type="text" name="firstname" id="firstname"  value="" placeholder="FirstName..."  /> <br/>
+                <label> LastName </label> <br/>
+                <input type="text" name="lastname" id="lastname"  value="" placeholder="LastName..." /> <br/>
+                <label> Minstry/Church </label> <br/>
+                <input type="text" name="ministry" value="" id="ministry" placeholder="ministry/church..." /> <br/>
+                <label> Phone Number </label> <br/>
+                <input type="tel" name="phone" value="" id="phone" placeholder="Phone Number..." > <br/>
+                <label>Email </label> <br/>
+                <input type="email" name="email" value ="" id="email" placeholder="Enter Email..."  /> <br/>
+
+                <button id="button" class="btnSubmit" type="submit" >Submit</button>
+                
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <script src="script.js">
+                        //START AJAX TO PASS rating_arr
+                    $('#regForm').submit(function(e){
+                    e.preventDefault();
+
+                    $( "#button" ).addClass("onclick");                 
+                     
+                                      
+                    var data = {
+                        firstname: $('#firstname').val(), 
+                        lastname: $('#lastname').val(), 
+                        phone: $('#phone').val(),
+                        email: $('#email').val(),
+                        ministry: $('#ministry').val()
+                    }
+                    console.log(data);
+                   
+                    $.ajax({
+                        url: "/formHandler.php",
+                        method: 'post',
+                        data: data,
+                        success: function(result){
+                            console.log(result.success);
+                            Swal.fire({
+                              title: "You have registered",
+                              text: "Pay to so so so bank to finish!",
+                              icon: "success",
+                              showConfirmButton: false,
+                          });                                              
+                    },
+                    error: function(err){
+                      console.log(err)
+                      Swal.fire({
+                          type: 'error',
+                          title: 'Oops...',
+                          text: 'Something went wrong!',
+                          showConfirmButton: false
+                      })
+                  }
+              })
+                });
+    </script>
+</body>
+</html>
